@@ -24,15 +24,15 @@
         "mimeType": "image/x-mkcd-f4",
         "displayName": "B_Button"
     },
-    "image3": {
-        "data": "hwQQABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD//wAAAAAA8BERDwAAAADwEREPAAAAAPAREQ8AAAAA8BERDwAAAAD/ERH/AAAA8BEREREPAADwEREREQ8AAAAfERHxAAAAAB8REfEAAAAA8BERDwAAAAAAH/EAAAAAAADwDwAAAA==",
-        "mimeType": "image/x-mkcd-f4",
-        "displayName": "cursorRight"
-    },
     "image4": {
         "data": "hwQQABAAAADw////////D/8RERERERH/H/H/////H/Ef/wAAAAD/8R8PAAAAAPDxHw8AAAAA8PEfDwAAAADw8R8PAAAAAPDxHw8AAAAA8PEfDwAAAADw8R8PAAAAAPDxHw8AAAAA8PEfDwAAAADw8R8PAAAAAPDxHw8AAAAA8PHwAAAAAAAADw==",
         "mimeType": "image/x-mkcd-f4",
         "displayName": "selectorRight"
+    },
+    "image3": {
+        "data": "hwQQABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD//wAAAAAA8BERDwAAAADwEREPAAAAAPAREQ8AAAAA8BERDwAAAAD/ERH/AAAA8BEREREPAADwEREREQ8AAAAfERHxAAAAAB8REfEAAAAA8BERDwAAAAAAH/EAAAAAAADwDwAAAA==",
+        "mimeType": "image/x-mkcd-f4",
+        "displayName": "cursorRight"
     },
     "*": {
         "mimeType": "image/x-mkcd-f4",
