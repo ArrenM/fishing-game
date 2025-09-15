@@ -57,32 +57,31 @@ function callScene (sceenName: string) {
 controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
     if (currentScene == "titleScreen") {
         scene.cameraShake(2, 100)
-    }
-    if (currentScene == "mainMenu") {
+    } else if (currentScene == "mainMenu") {
         loadScene("titleScreen", "disolve")
+    } else {
+    	
     }
 })
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     if (currentScene == "titleScreen") {
         loadScene("mainMenu", "disolve")
-    }
-    if (currentScene == "mainMenu") {
+    } else if (currentScene == "mainMenu") {
         if (selectedButton == 0) {
             startGame()
-        }
-        if (selectedButton == 1) {
+        } else if (selectedButton == 1) {
             loadScene("password", "disolve")
-        }
-        if (selectedButton == 2) {
+        } else if (selectedButton == 2) {
             loadScene("settings", "disolve")
-        }
-        if (selectedButton == 3) {
+        } else if (selectedButton == 3) {
             loadScene("about", "disolve")
         }
+    } else if (currentScene == "error") {
+        game.reset()
     }
 })
 function startGame () {
-	
+    error("not yet", "implemented")
 }
 function clearScene () {
     sprites.destroyAllSpritesOfKind(SpriteKind.Text)
@@ -101,26 +100,34 @@ function loadScene (sceneName: string, transitionName: string) {
         pause(200)
     }
     callScene(sceneName)
-    if (transitionName == "disolve") {
-        disolve(15, 0, 300)
-    } else if (transitionName == "start") {
-        titleText.y = -100
-        titleText.setVelocity(0, 200)
-        pauseUntil(() => titleText.y >= 50)
-        titleText.setVelocity(0, 0)
-        titleText.y = 60
-        scene.cameraShake(4, 100)
+    if (currentScene != "error") {
+        if (transitionName == "disolve") {
+            disolve(15, 0, 300)
+        } else if (transitionName == "start") {
+            titleText.y = -100
+            titleText.setVelocity(0, 200)
+            pauseUntil(() => titleText.y >= 50)
+            titleText.setVelocity(0, 0)
+            titleText.y = 60
+            scene.cameraShake(4, 100)
+        }
+        currentScene = sceneName
     }
-    currentScene = sceneName
 }
-function sceneNotFound (sceneName: string) {
-    titleText = textsprite.create("scene:" + "\"" + sceneName + "\"", 0, 2)
+function errorScene (messageTop: string, messageBottom: string) {
+    faceSprite = sprites.create(assets.image`errorFace`, SpriteKind.Text)
+    faceSprite.setPosition(80, 40)
+    titleText = textsprite.create(messageTop, 0, 2)
     titleText.setPosition(80, 60)
-    subtitleText = textsprite.create("not found", 0, 2)
-    subtitleText.setPosition(80, 80)
+    subtitleText = textsprite.create(messageBottom, 0, 2)
+    subtitleText.setPosition(80, 70)
     promptText1 = textsprite.create("restart", 0, 1)
     promptText1.setIcon(assets.image`A_Button`)
     promptText1.setPosition(80, 100)
+    currentScene = "error"
+}
+function sceneNotFound (sceneName: string) {
+    errorScene("scene:" + "\"" + sceneName + "\"", "not found")
 }
 function titleScreen () {
     scene.setBackgroundImage(assets.image`titleScreenBackground`)
@@ -158,8 +165,13 @@ function disolve (colorStart: number, colorEnd: number, time: number) {
     }
     transitionSprite.image.fill(colorEnd)
 }
+function error (messageTop: string, messageBottom: string) {
+    clearScene()
+    errorScene(messageTop, messageBottom)
+}
 let transitionSprite: Sprite = null
 let subtitleText: TextSprite = null
+let faceSprite: Sprite = null
 let currentScene = ""
 let index = 0
 let selectedButton = 0
